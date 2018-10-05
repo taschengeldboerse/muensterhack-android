@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="6dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="6dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageViewCategoryIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_account_circle"/>
+
+        <TextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
+            android:textAppearance="@style/Text16Regular"
+            android:textColor="@color/black54"
+            app:layout_constraintBottom_toBottomOf="@id/imageViewCategoryIcon"
+            app:layout_constraintEnd_toStartOf="@id/textViewDistance"
+            app:layout_constraintStart_toEndOf="@id/imageViewCategoryIcon"
+            app:layout_constraintTop_toTopOf="@id/imageViewCategoryIcon"
+            tools:text="Einkauf"/>
+
+        <TextView
+            android:id="@+id/textViewDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textAppearance="@style/Text16Regular"
+            android:textColor="@color/black54"
+            app:layout_constraintBottom_toBottomOf="@id/imageViewNavigation"
+            app:layout_constraintEnd_toStartOf="@id/imageViewNavigation"
+            app:layout_constraintTop_toTopOf="@id/imageViewNavigation"
+            tools:text="500 m"/>
+
+        <ImageView
+            android:id="@+id/imageViewNavigation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="12dp"
+            android:rotation="45"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_navigation"/>
+
+        <TextView
+            android:id="@+id/textViewDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/Text20Regular"
+            android:textColor="@color/black87"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageViewCategoryIcon"
+            tools:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut."/>
+
+        <TextView
+            android:id="@+id/textViewLongDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textAppearance="@style/Text20Regular"
+            android:textColor="@color/black54"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewDescription"
+            tools:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut."/>
+
+        <ImageView
+            android:id="@+id/imageViewDurationIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewLongDescription"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_timer"/>
+
+        <TextView
+            android:id="@+id/textViewDuration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
+            android:textAppearance="@style/Text12Regular"
+            android:textColor="@color/black54"
+            app:layout_constraintBottom_toBottomOf="@id/imageViewDurationIcon"
+            app:layout_constraintEnd_toStartOf="@id/textViewDueDate"
+            app:layout_constraintStart_toEndOf="@id/imageViewDurationIcon"
+            app:layout_constraintTop_toTopOf="@id/imageViewDurationIcon"
+            tools:text="ca. 30 Minuten"/>
+
+        <TextView
+            android:id="@+id/textViewDueDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
+            android:textAppearance="@style/Text12Regular"
+            android:textColor="@color/black54"
+            app:layout_constraintBottom_toBottomOf="@id/imageViewDurationIcon"
+            app:layout_constraintEnd_toStartOf="@id/imageViewDueDateIcon"
+            app:layout_constraintTop_toTopOf="@id/imageViewDurationIcon"
+            tools:text="bis zum 16.10.2018"/>
+
+        <ImageView
+            android:id="@+id/imageViewDueDateIcon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
+            android:textAppearance="@style/Text12Regular"
+            android:textColor="@color/black54"
+            app:layout_constraintBottom_toBottomOf="@id/imageViewDurationIcon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imageViewDurationIcon"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_date_range"/>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

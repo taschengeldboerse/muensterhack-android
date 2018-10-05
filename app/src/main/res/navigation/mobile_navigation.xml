@@ -4,21 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/startFragment">
-
-    <fragment
-        android:id="@+id/startFragment"
-        android:name="de.muensterhack.start.StartFragment"
-        android:label="StartFragment"
-        tools:layout="@layout/fragment_start">
-
-        <action
-            android:id="@+id/action_startFragment_to_studentFragment"
-            app:destination="@id/studentFragment"/>
-        <action
-            android:id="@+id/action_startFragment_to_seniorFragment"
-            app:destination="@id/seniorFragment"/>
-    </fragment>
+    app:startDestination="@id/studentFragment">
 
     <fragment
         android:id="@+id/studentFragment"
@@ -26,9 +12,4 @@
         android:label="StudentFragment"
         tools:layout="@layout/fragment_student"/>
 
-    <fragment
-        android:id="@+id/seniorFragment"
-        android:name="de.muensterhack.senior.SeniorFragment"
-        android:label="SeniorFragment"
-        tools:layout="@layout/fragment_senior"/>
 </navigation>

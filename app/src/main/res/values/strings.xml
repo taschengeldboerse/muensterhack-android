@@ -3,4 +3,7 @@
     <string name="student">Student</string>
     <string name="senior">Senior</string>
     <string name="grant_location_permission">Keine Location-Berechtigung vergeben</string>
+    <string name="marketplace">Marktplatz</string>
+    <string name="duration_format">ca. %1$d Minuten</string>
+    <string name="due_date_format">bis zum %1$s</string>
 </resources>
