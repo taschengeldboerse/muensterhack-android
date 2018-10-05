@@ -18,6 +18,8 @@ class TaskRepositoryImpl(
     override fun tasks(latitude: Double?, longitude: Double?, callback: TaskListCallback) {
         doAsync {
             val tasks = apiService.tasks(latitude, longitude).execute().body()!!
+            // TODO
+            val categories = apiService.categories().execute().body()!!
             uiThread { callback.invoke(tasks) }
         }
     }

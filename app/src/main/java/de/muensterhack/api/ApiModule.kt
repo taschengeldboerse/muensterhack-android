@@ -1,5 +1,7 @@
 package de.muensterhack.api
 
+import de.muensterhack.api.task.TaskRepository
+import de.muensterhack.api.task.TaskRepositoryImpl
 import okhttp3.OkHttpClient
 import org.koin.dsl.module.module
 import retrofit2.Retrofit
@@ -25,4 +27,6 @@ val apiModule = module {
     }
 
     single<GsonConverterFactory> { GsonConverterFactory.create() }
+
+    factory<TaskRepository> { TaskRepositoryImpl(get()) }
 }
