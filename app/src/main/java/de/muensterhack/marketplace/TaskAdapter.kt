@@ -41,6 +41,7 @@ class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val context = itemView.context
 
         taskViewModel.run {
+            imageViewCategoryIcon.setImageResource(R.drawable.ic_account_circle)
             textViewTitle.text = title
             textViewDescription.text = description
             textViewDuration.text = context.getString(R.string.duration_format, duration)
