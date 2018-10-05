@@ -7,4 +7,5 @@
     <string name="due_date_format">bis zum %1$s</string>
     <string name="distance_format">%1$s m</string>
     <string name="confirm_task">Auftrag übernehmen</string>
+    <string name="profile">Profil</string>
 </resources>

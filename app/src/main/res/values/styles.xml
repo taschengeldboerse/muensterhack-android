@@ -8,6 +8,10 @@
         <item name="android:windowBackground">@color/background</item>
     </style>
 
+    <style name="Text24Regular" parent="Base.TextAppearance.AppCompat">
+        <item name="android:textSize">24sp</item>
+    </style>
+
     <style name="Text20Regular" parent="Base.TextAppearance.AppCompat">
         <item name="android:textSize">20sp</item>
     </style>

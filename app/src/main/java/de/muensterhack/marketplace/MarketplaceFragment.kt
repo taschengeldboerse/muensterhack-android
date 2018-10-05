@@ -4,11 +4,12 @@ import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.core.content.ContextCompat.checkSelfPermission
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.checkSelfPermission
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import de.muensterhack.R
 import de.muensterhack.api.task.Task
@@ -32,9 +33,9 @@ class MarketplaceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        imageViewFilter.setOnClickListener {  }
+        imageViewFilter.setOnClickListener { }
 
-        imageViewAccount.setOnClickListener {  }
+        imageViewProfile.setOnClickListener { findNavController().navigate(R.id.profileFragment) }
 
         recyclerViewTasks.adapter = taskAdapter
 
