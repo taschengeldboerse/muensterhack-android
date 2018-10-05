@@ -3,7 +3,8 @@
     <string name="student">Student</string>
     <string name="senior">Senior</string>
     <string name="grant_location_permission">Keine Location-Berechtigung vergeben</string>
-    <string name="marketplace">Marktplatz</string>
     <string name="duration_format">ca. %1$d Minuten</string>
     <string name="due_date_format">bis zum %1$s</string>
+    <string name="distance_format">%1$s m</string>
+    <string name="confirm_task">Auftrag übernehmen</string>
 </resources>

@@ -1,9 +1,9 @@
 package de.muensterhack.marketplace
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import de.muensterhack.R
 import kotlinx.android.synthetic.main.item_marketplace.view.*
 
@@ -34,16 +34,26 @@ class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val textViewDistance = itemView.textViewDistance
     private val textViewDescription = itemView.textViewDescription
     private val textViewLongDescription = itemView.textViewLongDescription
+    private val buttonConfirm = itemView.buttonConfirm
     private val textViewDuration = itemView.textViewDuration
     private val textViewDueDate = itemView.textViewDueDate
 
     fun bind(taskViewModel: TaskViewModel) {
+
+        buttonConfirm.setOnClickListener { }
+
         val context = itemView.context
 
         taskViewModel.run {
+            // TODO category
             imageViewCategoryIcon.setImageResource(R.drawable.ic_account_circle)
-            textViewTitle.text = title
-            textViewDescription.text = description
+            textViewTitle.text = "Kategorie"
+            textViewDescription.text = title
+
+            // TODO distance
+            textViewDistance.text = context.getString(R.string.distance_format, "500")
+
+            textViewLongDescription.text = description
             textViewDuration.text = context.getString(R.string.duration_format, duration)
             textViewDueDate.text = context.getString(R.string.due_date_format, dueDate)
         }

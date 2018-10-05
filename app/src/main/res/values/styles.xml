@@ -1,4 +1,5 @@
 <resources>
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -17,5 +18,11 @@
 
     <style name="Text12Regular" parent="Base.TextAppearance.AppCompat">
         <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Text14MediumUppercase" parent="Base.TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 </resources>
