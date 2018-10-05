@@ -1,4 +1,4 @@
-package de.muensterhack.student
+package de.muensterhack.marketplace
 
 import com.google.android.gms.location.LocationServices
 import de.muensterhack.api.task.TaskRepository

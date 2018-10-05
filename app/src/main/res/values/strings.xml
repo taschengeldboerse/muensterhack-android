@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">muensterhack-android</string>
+    <string name="app_name">Taschengeldbörse</string>
     <string name="student">Student</string>
     <string name="senior">Senior</string>
     <string name="grant_location_permission">Keine Location-Berechtigung vergeben</string>

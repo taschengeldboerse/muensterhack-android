@@ -1,4 +1,4 @@
-package de.muensterhack.student
+package de.muensterhack.marketplace
 
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.annotation.SuppressLint
@@ -14,10 +14,10 @@ import de.muensterhack.R
 import de.muensterhack.api.task.Task
 import de.muensterhack.api.task.TaskRepository
 import de.muensterhack.ext.formatDate
-import kotlinx.android.synthetic.main.fragment_student.*
+import kotlinx.android.synthetic.main.fragment_marketplace.*
 import org.koin.android.ext.android.inject
 
-class StudentFragment : Fragment() {
+class MarketplaceFragment : Fragment() {
 
     private val fusedLocationClient: FusedLocationProviderClient by inject()
 
@@ -26,7 +26,7 @@ class StudentFragment : Fragment() {
     private val taskAdapter = TaskAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_student, container, false)
+        return inflater.inflate(R.layout.fragment_marketplace, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,12 +55,10 @@ class StudentFragment : Fragment() {
 
     @SuppressLint("MissingPermission")
     private fun getLastLocation() {
-        fusedLocationClient.lastLocation.addOnSuccessListener { location -> loadTasks(location.latitude, location.longitude) }
+        fusedLocationClient.lastLocation.addOnSuccessListener { loadTasks(it.latitude, it.longitude) }
     }
 
-    private fun loadTasks(latitude: Double, longitude: Double) = taskRepository.tasks(latitude, longitude, displayTasks())
-
-    private fun loadTasks() = taskRepository.tasks(callback = displayTasks())
+    private fun loadTasks(lat: Double? = null, lon: Double? = null) = taskRepository.tasks(lat, lon, displayTasks())
 
     private fun displayTasks(): (List<Task>) -> Unit = { tasks ->
         taskAdapter.tasks = tasks.map {

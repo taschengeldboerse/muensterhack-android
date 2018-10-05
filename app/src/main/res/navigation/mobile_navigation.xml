@@ -8,8 +8,8 @@
 
     <fragment
         android:id="@+id/studentFragment"
-        android:name="de.muensterhack.student.StudentFragment"
+        android:name="de.muensterhack.marketplace.MarketplaceFragment"
         android:label="StudentFragment"
-        tools:layout="@layout/fragment_student"/>
+        tools:layout="@layout/fragment_marketplace"/>
 
 </navigation>

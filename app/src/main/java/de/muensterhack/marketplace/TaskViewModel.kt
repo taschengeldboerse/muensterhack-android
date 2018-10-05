@@ -1,4 +1,4 @@
-package de.muensterhack.student
+package de.muensterhack.marketplace
 
 data class TaskViewModel(
         val title: String,
