@@ -5,7 +5,7 @@ import org.koin.dsl.module.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-private const val API_ENDPOINT = ""
+private const val API_ENDPOINT = "https://taschengeldboerse.io"
 
 val apiModule = module {
 

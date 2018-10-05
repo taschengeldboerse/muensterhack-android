@@ -10,5 +10,25 @@
         android:id="@+id/startFragment"
         android:name="de.muensterhack.start.StartFragment"
         android:label="StartFragment"
-        tools:layout="@layout/activity_main"/>
+        tools:layout="@layout/fragment_start">
+
+        <action
+            android:id="@+id/action_startFragment_to_studentFragment"
+            app:destination="@id/studentFragment"/>
+        <action
+            android:id="@+id/action_startFragment_to_seniorFragment"
+            app:destination="@id/seniorFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/studentFragment"
+        android:name="de.muensterhack.student.StudentFragment"
+        android:label="StudentFragment"
+        tools:layout="@layout/fragment_student"/>
+
+    <fragment
+        android:id="@+id/seniorFragment"
+        android:name="de.muensterhack.senior.SeniorFragment"
+        android:label="SeniorFragment"
+        tools:layout="@layout/fragment_senior"/>
 </navigation>

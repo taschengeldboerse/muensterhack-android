@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">muensterhack-android</string>
+    <string name="student">Student</string>
+    <string name="senior">Senior</string>
 </resources>
