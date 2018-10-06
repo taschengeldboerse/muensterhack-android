@@ -14,14 +14,20 @@ import de.muensterhack.R
 import de.muensterhack.api.category.Categories
 import de.muensterhack.api.task.Task
 import de.muensterhack.api.task.TaskRepository
+import de.muensterhack.ext.DATE_FORMAT_API
+import de.muensterhack.ext.DATE_FORMAT_APP
 import de.muensterhack.preferences.Preferences
 import kotlinx.android.synthetic.main.fragment_add_task.*
+import org.joda.time.DateTime
 import org.koin.android.ext.android.inject
 
 class AddTaskFragment : Fragment() {
 
     private val taskRepository: TaskRepository by inject()
     private val preferences: Preferences by inject()
+
+    private var duration: Int = 0
+    private var dueDate: DateTime = DateTime.now().plusDays(1)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_add_task, container, false)
@@ -44,6 +50,7 @@ class AddTaskFragment : Fragment() {
         chipCategory.setOnClickListener { findNavController().navigateUp() }
 
         editTextWhatToDo.setText(preferences.getWhatToDo())
+        buttonConfirm.isEnabled = editTextWhatToDo.text.isNotBlank()
         editTextWhatToDo.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 buttonConfirm.isEnabled = s?.isNotBlank() ?: false
@@ -70,14 +77,48 @@ class AddTaskFragment : Fragment() {
             }
         })
 
+        duration = preferences.getDuration()
+        textViewDurationValue.text = getString(R.string.duration_format_edit, duration)
+
+        buttonMinusDuration.setOnClickListener {
+            if (duration > 0) {
+                duration--
+                textViewDurationValue.text = getString(R.string.duration_format_edit, duration)
+                preferences.setDuration(duration)
+            }
+        }
+
+        buttonPlusDuration.setOnClickListener {
+            duration++
+            textViewDurationValue.text = getString(R.string.duration_format_edit, duration)
+            preferences.setDuration(duration)
+        }
+
+        dueDate = preferences.getDueDate()
+        textViewDueDateValue.text = dueDate.toString(DATE_FORMAT_APP)
+
+        buttonMinusDueDate.setOnClickListener {
+            dueDate = dueDate.minusDays(1)
+            textViewDueDateValue.text = dueDate.toString(DATE_FORMAT_APP)
+            preferences.setDueDate(dueDate)
+        }
+
+        buttonPlusDueDate.setOnClickListener {
+            dueDate = dueDate.plusDays(1)
+            textViewDueDateValue.text = dueDate.toString(DATE_FORMAT_APP)
+            preferences.setDueDate(dueDate)
+        }
+
         buttonConfirm.isEnabled = false
         buttonConfirm.setOnClickListener {
             val whatToDo = editTextWhatToDo.text.toString()
             val description = editTextDescription.text.toString()
 
-            taskRepository.putTask(Task(whatToDo, description, "2010-11-10", 0, 0, category.id, 1)) {
+            taskRepository.putTask(Task(whatToDo, description, dueDate.toString(DATE_FORMAT_API), duration, 0, category.id, 1)) {
                 preferences.setWhatToDo("")
                 preferences.setDescription("")
+                preferences.setDuration(0)
+                preferences.setDueDate(DateTime.now().plusDays(1))
                 findNavController().popBackStack(R.id.marketplaceFragment, false)
             }
         }

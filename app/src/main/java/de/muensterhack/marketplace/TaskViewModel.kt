@@ -7,5 +7,6 @@ data class TaskViewModel(
         val description: String?,
         val dueDate: String,
         val duration: Int?,
-        val category: Categories?
+        val category: Categories?,
+        val distance: Int?
 )

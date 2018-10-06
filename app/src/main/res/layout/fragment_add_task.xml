@@ -62,8 +62,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:padding="12dp"
                 android:elevation="2dp"
+                android:padding="12dp"
                 android:textAppearance="@style/Text20Regular"
                 android:textColor="@color/black87"
                 app:chipBackgroundColor="@color/white"
@@ -147,6 +147,106 @@
                 app:layout_constraintTop_toBottomOf="@id/editTextDescription"/>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonMinusDuration"
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="@string/minus"
+                android:textAppearance="@style/Text20Regular"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/buttonColor"
+                app:cornerRadius="2dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewDuration"/>
+
+            <TextView
+                android:id="@+id/textViewDurationValue"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:padding="16dp"
+                android:textAppearance="@style/Text20Regular"
+                android:textColor="@color/black87"
+                app:layout_constraintBottom_toBottomOf="@id/buttonMinusDuration"
+                app:layout_constraintStart_toEndOf="@id/buttonMinusDuration"
+                app:layout_constraintTop_toTopOf="@id/buttonMinusDuration"
+                tools:text="30 min"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonPlusDuration"
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:gravity="center"
+                android:text="@string/plus"
+                android:textAppearance="@style/Text20Regular"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/buttonColor"
+                app:cornerRadius="2dp"
+                app:layout_constraintBottom_toBottomOf="@id/buttonMinusDuration"
+                app:layout_constraintStart_toEndOf="@id/textViewDurationValue"
+                app:layout_constraintTop_toTopOf="@id/buttonMinusDuration"/>
+
+            <TextView
+                android:id="@+id/textViewDueDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:text="@string/due_date"
+                android:textAppearance="@style/Text24Regular"
+                android:textColor="@color/black54"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/buttonMinusDuration"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonMinusDueDate"
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="@string/minus"
+                android:textAppearance="@style/Text20Regular"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/buttonColor"
+                app:cornerRadius="2dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewDueDate"/>
+
+            <TextView
+                android:id="@+id/textViewDueDateValue"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@color/white"
+                android:gravity="center"
+                android:padding="16dp"
+                android:textAppearance="@style/Text20Regular"
+                android:textColor="@color/black87"
+                app:layout_constraintBottom_toBottomOf="@id/buttonMinusDueDate"
+                app:layout_constraintStart_toEndOf="@id/buttonMinusDueDate"
+                app:layout_constraintTop_toTopOf="@id/buttonMinusDueDate"
+                tools:text="10.10.2018"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonPlusDueDate"
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:gravity="center"
+                android:text="@string/plus"
+                android:textAppearance="@style/Text20Regular"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/buttonColor"
+                app:cornerRadius="2dp"
+                app:layout_constraintBottom_toBottomOf="@id/buttonMinusDueDate"
+                app:layout_constraintStart_toEndOf="@id/textViewDueDateValue"
+                app:layout_constraintTop_toTopOf="@id/buttonMinusDueDate"/>
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonConfirm"
                 style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                 android:layout_width="wrap_content"
@@ -158,7 +258,7 @@
                 app:cornerRadius="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewDuration"/>
+                app:layout_constraintTop_toBottomOf="@id/buttonMinusDueDate"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

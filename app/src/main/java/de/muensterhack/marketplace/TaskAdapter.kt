@@ -2,6 +2,8 @@ package de.muensterhack.marketplace
 
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import de.muensterhack.R
@@ -36,6 +38,7 @@ class TaskAdapter : RecyclerView.Adapter<TaskViewHolder>() {
 class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val imageViewCategoryIcon = itemView.imageViewCategoryIcon
+    private val imageViewNavigation = itemView.imageViewNavigation
     private val textViewTitle = itemView.textViewTitle
     private val textViewDistance = itemView.textViewDistance
     private val textViewDescription = itemView.textViewDescription
@@ -58,8 +61,14 @@ class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
             textViewDescription.text = title
 
-            // TODO distance
-            textViewDistance.text = context.getString(R.string.distance_format, "500")
+            if (distance == null) {
+                textViewDistance.visibility = GONE
+                imageViewNavigation.visibility = GONE
+            } else {
+                textViewDistance.text = context.getString(R.string.distance_format, distance)
+                textViewDistance.visibility = VISIBLE
+                imageViewNavigation.visibility = VISIBLE
+            }
 
             textViewLongDescription.text = description
             textViewDuration.text = context.getString(R.string.duration_format, duration)

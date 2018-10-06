@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#DCDCDC</color>
-    <color name="colorAccent">#B33771</color>
+    <color name="colorAccent">#2D8B29</color>
 
     <color name="background">#FAFAFA</color>
     <color name="white">#FFFFFF</color>
@@ -10,6 +10,8 @@
     <color name="black87">#DE000000</color>
     <color name="black54">#8A000000</color>
     <color name="black18">#2E000000</color>
+
+    <color name="buttonColor">#94C123</color>
 
     <color name="cat_company">#16A085</color>
     <color name="cat_shopping">#C0392B</color>

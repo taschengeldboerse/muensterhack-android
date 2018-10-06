@@ -7,5 +7,6 @@ data class Task(
         val estimated_time_in_minutes: Int?,
         val status: Int,
         val category: Int,
-        val user: Int?
+        val user: Int?,
+        val distance_in_meters: Int? = null
 )

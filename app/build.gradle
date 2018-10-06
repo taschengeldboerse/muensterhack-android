@@ -45,6 +45,8 @@ dependencies {
     implementation 'org.koin:koin-android-viewmodel:1.0.1'
 
     implementation 'com.google.android.gms:play-services-location:16.0.0'
+
+    implementation 'joda-time:joda-time:2.3'
 }
 
 kotlin {

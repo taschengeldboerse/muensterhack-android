@@ -2,8 +2,9 @@
     <string name="app_name">Taschengeldbörse</string>
     <string name="grant_location_permission">Keine Location-Berechtigung vergeben</string>
     <string name="duration_format">ca. %1$d Minuten</string>
+    <string name="duration_format_edit">%1$d min</string>
     <string name="due_date_format">bis zum %1$s</string>
-    <string name="distance_format">%1$s m</string>
+    <string name="distance_format">%1$d m</string>
     <string name="confirm_task">Auftrag übernehmen</string>
     <string name="profile">Profil</string>
     <string name="company">Begleithilfe</string>
@@ -22,4 +23,7 @@
     <string name="estimated_duration">Geschätzte Dauer</string>
     <string name="add_task">Auftrag erstellen</string>
     <string name="choose_category">Kategorie auswählen</string>
+    <string name="minus">–</string>
+    <string name="plus">+</string>
+    <string name="due_date">Zu erledigen bis</string>
 </resources>

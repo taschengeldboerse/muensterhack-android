@@ -3,8 +3,8 @@ package de.muensterhack.ext
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-private const val DATE_FORMAT_API = "yyyy-MM-dd"
-private const val DATE_FORMAT_APP = "dd.MM.yyyy"
+const val DATE_FORMAT_API = "yyyy-MM-dd"
+const val DATE_FORMAT_APP = "dd.MM.yyyy"
 
 fun String.formatDate(): String {
     val parsedDate = SimpleDateFormat(DATE_FORMAT_API, Locale.getDefault()).parse(this)

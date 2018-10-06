@@ -28,7 +28,7 @@ class TaskRepositoryImpl(
 
     override fun putTask(task: Task, callback: () -> Unit) {
         doAsync {
-            apiService.putTask(task).execute()
+            val execute = apiService.putTask(task).execute()
             uiThread { callback.invoke() }
         }
     }

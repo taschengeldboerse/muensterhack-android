@@ -88,7 +88,8 @@ class MarketplaceFragment : Fragment(), FilterListener {
         swipeRefreshLayout.isRefreshing = false
 
         taskViewModels = tasks.map {
-            TaskViewModel(it.title, it.description, it.due_date.formatDate(), it.estimated_time_in_minutes, getById(it.category))
+            TaskViewModel(it.title, it.description, it.due_date.formatDate(), it.estimated_time_in_minutes, getById(it.category),
+                    it.distance_in_meters)
         }
 
         taskAdapter.tasks = taskViewModels.filter { filteredCategories.contains(it.category?.id) }
