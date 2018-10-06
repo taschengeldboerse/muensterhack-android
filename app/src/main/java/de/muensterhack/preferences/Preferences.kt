@@ -13,6 +13,7 @@ private const val PREF_DURATION = "duration"
 private const val PREF_DUE_DATE = "due_date"
 private const val DELIMITER = ","
 private val DEFAULT_FILTERED_CATEGORIES = Categories.values().map { it.id }.joinToString(DELIMITER)
+val DEFAULT_DURATION = 30
 
 interface Preferences {
 
@@ -74,7 +75,7 @@ class PreferencesImpl(
             .putInt(PREF_DURATION, duration)
             .apply()
 
-    override fun getDuration() = sharedPreferences.getInt(PREF_DURATION, 0)
+    override fun getDuration() = sharedPreferences.getInt(PREF_DURATION, DEFAULT_DURATION)
 
     override fun getDueDate() = DateTime(sharedPreferences.getLong(PREF_DUE_DATE, DateTime.now().plusDays(1).millis))
 

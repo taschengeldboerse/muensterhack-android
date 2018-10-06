@@ -16,6 +16,7 @@ import de.muensterhack.api.task.Task
 import de.muensterhack.api.task.TaskRepository
 import de.muensterhack.ext.DATE_FORMAT_API
 import de.muensterhack.ext.DATE_FORMAT_APP
+import de.muensterhack.preferences.DEFAULT_DURATION
 import de.muensterhack.preferences.Preferences
 import kotlinx.android.synthetic.main.fragment_add_task.*
 import org.joda.time.DateTime
@@ -26,7 +27,7 @@ class AddTaskFragment : Fragment() {
     private val taskRepository: TaskRepository by inject()
     private val preferences: Preferences by inject()
 
-    private var duration: Int = 0
+    private var duration: Int = DEFAULT_DURATION
     private var dueDate: DateTime = DateTime.now().plusDays(1)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -81,15 +82,15 @@ class AddTaskFragment : Fragment() {
         textViewDurationValue.text = getString(R.string.duration_format_edit, duration)
 
         buttonMinusDuration.setOnClickListener {
-            if (duration > 0) {
-                duration--
+            if (duration >= 15) {
+                duration -= 15
                 textViewDurationValue.text = getString(R.string.duration_format_edit, duration)
                 preferences.setDuration(duration)
             }
         }
 
         buttonPlusDuration.setOnClickListener {
-            duration++
+            duration += 15
             textViewDurationValue.text = getString(R.string.duration_format_edit, duration)
             preferences.setDuration(duration)
         }
@@ -117,7 +118,7 @@ class AddTaskFragment : Fragment() {
             taskRepository.putTask(Task(whatToDo, description, dueDate.toString(DATE_FORMAT_API), duration, 0, category.id, 1)) {
                 preferences.setWhatToDo("")
                 preferences.setDescription("")
-                preferences.setDuration(0)
+                preferences.setDuration(DEFAULT_DURATION)
                 preferences.setDueDate(DateTime.now().plusDays(1))
                 findNavController().popBackStack(R.id.marketplaceFragment, false)
             }
