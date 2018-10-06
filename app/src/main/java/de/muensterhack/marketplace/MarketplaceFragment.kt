@@ -79,7 +79,13 @@ class MarketplaceFragment : Fragment(), FilterListener, TaskConfirmListener {
 
     @SuppressLint("MissingPermission")
     private fun getLastLocation() {
-        fusedLocationClient.lastLocation.addOnSuccessListener { loadTasks(it.latitude, it.longitude) }
+        fusedLocationClient.lastLocation.addOnSuccessListener {
+            if (it == null) {
+                loadTasks()
+            } else {
+                loadTasks(it.latitude, it.longitude)
+            }
+        }
     }
 
     private fun loadTasks(lat: Double? = null, lon: Double? = null) = taskRepository.tasks(lat, lon, displayTasks())
