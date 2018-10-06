@@ -5,7 +5,6 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import de.muensterhack.R
 import kotlinx.android.synthetic.main.item_marketplace.view.*
@@ -73,7 +72,11 @@ class TaskViewHolder(
                 textViewDistance.visibility = GONE
                 imageViewNavigation.visibility = GONE
             } else {
-                textViewDistance.text = context.getString(R.string.distance_format, distance)
+                if (distance >= 1000) {
+                    textViewDistance.text = context.getString(R.string.distance_format_kilometers, distance / 1000)
+                } else {
+                    textViewDistance.text = context.getString(R.string.distance_format_meters, distance)
+                }
                 textViewDistance.visibility = VISIBLE
                 imageViewNavigation.visibility = VISIBLE
             }

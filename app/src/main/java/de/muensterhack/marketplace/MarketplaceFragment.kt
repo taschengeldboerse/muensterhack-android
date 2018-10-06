@@ -92,7 +92,7 @@ class MarketplaceFragment : Fragment(), FilterListener, TaskConfirmListener {
                     getById(it.category), it.distance_in_meters)
         }
 
-        taskAdapter.tasks = taskViewModels.filter { filteredCategories.contains(it.category?.id) }
+        taskAdapter.tasks = taskViewModels.filter { filteredCategories.contains(it.category?.id) }.sortedBy { it.distance }
     }
 
     override fun taskConfirmed(id: Int?) {
