@@ -7,4 +7,6 @@ import org.koin.dsl.module.module
 val studentModule = module {
 
     factory { LocationServices.getFusedLocationProviderClient(androidContext()) }
+
+    factory { FilterPopup(get(), get()) }
 }

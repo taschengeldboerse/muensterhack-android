@@ -3,6 +3,7 @@ package de.muensterhack
 import android.app.Application
 import de.muensterhack.api.apiModule
 import de.muensterhack.marketplace.studentModule
+import de.muensterhack.preferences.preferencesModule
 import org.koin.android.ext.android.startKoin
 
 class App : Application() {
@@ -16,7 +17,8 @@ class App : Application() {
     private fun initKoin() {
         startKoin(this, listOf(
                 apiModule,
-                studentModule
+                studentModule,
+                preferencesModule
         ))
     }
 }

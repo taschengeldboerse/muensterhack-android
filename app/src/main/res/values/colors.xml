@@ -8,4 +8,13 @@
 
     <color name="black87">#DE000000</color>
     <color name="black54">#8A000000</color>
+    <color name="black18">#2E000000</color>
+
+    <color name="cat_company">#16A085</color>
+    <color name="cat_shopping">#C0392B</color>
+    <color name="cat_garden">#4CAF50</color>
+    <color name="cat_home">#2980B9</color>
+    <color name="cat_pet">#795548</color>
+    <color name="cat_technology">#273C75</color>
+    <color name="cat_misc">#B33771</color>
 </resources>

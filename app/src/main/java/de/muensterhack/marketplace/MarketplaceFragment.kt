@@ -4,27 +4,36 @@ import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.os.Bundle
+import android.view.Gravity.END
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.checkSelfPermission
+import androidx.core.widget.PopupWindowCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import de.muensterhack.R
+import de.muensterhack.api.category.Categories.Companion.getById
 import de.muensterhack.api.task.Task
 import de.muensterhack.api.task.TaskRepository
 import de.muensterhack.ext.formatDate
+import de.muensterhack.preferences.Preferences
 import kotlinx.android.synthetic.main.fragment_marketplace.*
 import org.koin.android.ext.android.inject
 
-class MarketplaceFragment : Fragment() {
+class MarketplaceFragment : Fragment(), FilterListener {
 
     private val fusedLocationClient: FusedLocationProviderClient by inject()
 
     private val taskRepository: TaskRepository by inject()
+    private val filterPopup: FilterPopup by inject()
+    private val preferences: Preferences by inject()
 
     private val taskAdapter = TaskAdapter()
+
+    private var taskViewModels: List<TaskViewModel> = emptyList()
+    private var filteredCategories: List<Int> = emptyList()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_marketplace, container, false)
@@ -33,7 +42,13 @@ class MarketplaceFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        imageViewFilter.setOnClickListener { }
+        filterPopup.filterListener = this
+        filteredCategories = preferences.getFilteredCategories()
+
+        imageViewFilter.setOnClickListener {
+            val offset = resources.getDimension(R.dimen.toolbar_menu_offset_y).toInt()
+            PopupWindowCompat.showAsDropDown(filterPopup, imageViewFilter, 0, offset, END)
+        }
 
         imageViewProfile.setOnClickListener { findNavController().navigate(R.id.profileFragment) }
 
@@ -54,6 +69,11 @@ class MarketplaceFragment : Fragment() {
         }
     }
 
+    override fun filterChanged(filteredCategories: List<Int>) {
+        this.filteredCategories = filteredCategories
+        taskAdapter.tasks = taskViewModels.filter { filteredCategories.contains(it.category?.id) }
+    }
+
     @SuppressLint("MissingPermission")
     private fun getLastLocation() {
         fusedLocationClient.lastLocation.addOnSuccessListener { loadTasks(it.latitude, it.longitude) }
@@ -62,9 +82,11 @@ class MarketplaceFragment : Fragment() {
     private fun loadTasks(lat: Double? = null, lon: Double? = null) = taskRepository.tasks(lat, lon, displayTasks())
 
     private fun displayTasks(): (List<Task>) -> Unit = { tasks ->
-        taskAdapter.tasks = tasks.map {
-            TaskViewModel(it.title, it.description, it.due_date.formatDate(), it.estimated_time_in_minutes)
+        taskViewModels = tasks.map {
+            TaskViewModel(it.title, it.description, it.due_date.formatDate(), it.estimated_time_in_minutes, getById(it.category))
         }
+
+        taskAdapter.tasks = taskViewModels.filter { filteredCategories.contains(it.category?.id) }
     }
 
     companion object {

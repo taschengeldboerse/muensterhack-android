@@ -15,6 +15,10 @@ class TaskAdapter : RecyclerView.Adapter<TaskViewHolder>() {
             notifyDataSetChanged()
         }
 
+    init {
+        setHasStableIds(true)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_marketplace, parent, false)
         return TaskViewHolder(view)
@@ -25,6 +29,8 @@ class TaskAdapter : RecyclerView.Adapter<TaskViewHolder>() {
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         holder.bind(tasks[position])
     }
+
+    override fun getItemId(position: Int) = (tasks[position].title + tasks[position].category).hashCode().toLong()
 }
 
 class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -45,9 +51,11 @@ class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val context = itemView.context
 
         taskViewModel.run {
-            // TODO category
-            imageViewCategoryIcon.setImageResource(R.drawable.ic_account_circle)
-            textViewTitle.text = "Kategorie"
+            category?.let {
+                imageViewCategoryIcon.setImageResource(it.activeIcon)
+                textViewTitle.setText(it.title)
+            }
+
             textViewDescription.text = title
 
             // TODO distance
