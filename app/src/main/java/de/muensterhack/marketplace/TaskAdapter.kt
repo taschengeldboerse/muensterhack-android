@@ -5,11 +5,12 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import de.muensterhack.R
 import kotlinx.android.synthetic.main.item_marketplace.view.*
 
-class TaskAdapter : RecyclerView.Adapter<TaskViewHolder>() {
+class TaskAdapter(private val taskConfirmListener: TaskConfirmListener) : RecyclerView.Adapter<TaskViewHolder>() {
 
     var tasks: List<TaskViewModel> = listOf()
         set(value) {
@@ -23,7 +24,7 @@ class TaskAdapter : RecyclerView.Adapter<TaskViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_marketplace, parent, false)
-        return TaskViewHolder(view)
+        return TaskViewHolder(view, taskConfirmListener)
     }
 
     override fun getItemCount() = tasks.size
@@ -35,7 +36,10 @@ class TaskAdapter : RecyclerView.Adapter<TaskViewHolder>() {
     override fun getItemId(position: Int) = (tasks[position].title + tasks[position].category).hashCode().toLong()
 }
 
-class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class TaskViewHolder(
+        itemView: View,
+        private val taskConfirmListener: TaskConfirmListener
+) : RecyclerView.ViewHolder(itemView) {
 
     private val imageViewCategoryIcon = itemView.imageViewCategoryIcon
     private val imageViewNavigation = itemView.imageViewNavigation
@@ -49,9 +53,13 @@ class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(taskViewModel: TaskViewModel) {
 
-        buttonConfirm.setOnClickListener { }
-
         val context = itemView.context
+
+        buttonConfirm.setOnClickListener {
+            taskConfirmListener.taskConfirmed(taskViewModel.id)
+            buttonConfirm.isEnabled = false
+            buttonConfirm.text = context.getString(R.string.task_confirmed)
+        }
 
         taskViewModel.run {
             category?.let {
@@ -75,4 +83,9 @@ class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             textViewDueDate.text = context.getString(R.string.due_date_format, dueDate)
         }
     }
+}
+
+interface TaskConfirmListener {
+
+    fun taskConfirmed(id: Int?)
 }

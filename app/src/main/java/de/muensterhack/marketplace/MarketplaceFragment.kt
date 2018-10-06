@@ -22,7 +22,7 @@ import de.muensterhack.preferences.Preferences
 import kotlinx.android.synthetic.main.fragment_marketplace.*
 import org.koin.android.ext.android.inject
 
-class MarketplaceFragment : Fragment(), FilterListener {
+class MarketplaceFragment : Fragment(), FilterListener, TaskConfirmListener {
 
     private val fusedLocationClient: FusedLocationProviderClient by inject()
 
@@ -30,7 +30,7 @@ class MarketplaceFragment : Fragment(), FilterListener {
     private val filterPopup: FilterPopup by inject()
     private val preferences: Preferences by inject()
 
-    private val taskAdapter = TaskAdapter()
+    private val taskAdapter = TaskAdapter(this)
 
     private var taskViewModels: List<TaskViewModel> = emptyList()
     private var filteredCategories: List<Int> = emptyList()
@@ -88,11 +88,17 @@ class MarketplaceFragment : Fragment(), FilterListener {
         swipeRefreshLayout.isRefreshing = false
 
         taskViewModels = tasks.map {
-            TaskViewModel(it.title, it.description, it.due_date.formatDate(), it.estimated_time_in_minutes, getById(it.category),
-                    it.distance_in_meters)
+            TaskViewModel(it.id, it.title, it.description, it.due_date.formatDate(), it.estimated_time_in_minutes,
+                    getById(it.category), it.distance_in_meters)
         }
 
         taskAdapter.tasks = taskViewModels.filter { filteredCategories.contains(it.category?.id) }
+    }
+
+    override fun taskConfirmed(id: Int?) {
+        taskRepository.confirmTask(id, 1) {
+
+        }
     }
 
     companion object {

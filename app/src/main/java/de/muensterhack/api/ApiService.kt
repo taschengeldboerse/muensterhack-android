@@ -1,5 +1,6 @@
 package de.muensterhack.api
 
+import de.muensterhack.api.bid.Bid
 import de.muensterhack.api.task.Task
 import retrofit2.Call
 import retrofit2.http.*
@@ -15,4 +16,7 @@ interface ApiService {
 
     @POST("tasks")
     fun putTask(@Body task: Task): Call<Void>
+
+    @POST("bids")
+    fun putBid(@Body bid: Bid): Call<Void>
 }

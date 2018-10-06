@@ -1,6 +1,7 @@
 package de.muensterhack.api.task
 
 import de.muensterhack.api.ApiService
+import de.muensterhack.api.bid.Bid
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -13,6 +14,8 @@ interface TaskRepository {
     fun tasks(latitude: Double? = null, longitude: Double? = null, callback: TaskListCallback)
 
     fun putTask(task: Task, callback: () -> Unit)
+
+    fun confirmTask(id: Int?, user: Int?, callback: () -> Unit)
 }
 
 class TaskRepositoryImpl(
@@ -30,6 +33,15 @@ class TaskRepositoryImpl(
         doAsync {
             val execute = apiService.putTask(task).execute()
             uiThread { callback.invoke() }
+        }
+    }
+
+    override fun confirmTask(id: Int?, user: Int?, callback: () -> Unit) {
+        if (id != null && user != null) {
+            doAsync {
+                val execute = apiService.putBid(Bid(id, user)).execute()
+                uiThread { callback.invoke() }
+            }
         }
     }
 }

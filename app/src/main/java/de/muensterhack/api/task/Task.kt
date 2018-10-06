@@ -8,5 +8,6 @@ data class Task(
         val status: Int,
         val category: Int,
         val user: Int?,
-        val distance_in_meters: Int? = null
+        val distance_in_meters: Int? = null,
+        val id: Int? = null
 )
