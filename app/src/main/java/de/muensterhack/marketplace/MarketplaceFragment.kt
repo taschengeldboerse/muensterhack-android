@@ -42,6 +42,7 @@ class MarketplaceFragment : Fragment(), FilterListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        swipeRefreshLayout.setOnRefreshListener { loadTasks() }
         filterPopup.filterListener = this
         filteredCategories = preferences.getFilteredCategories()
 
@@ -50,7 +51,7 @@ class MarketplaceFragment : Fragment(), FilterListener {
             PopupWindowCompat.showAsDropDown(filterPopup, imageViewFilter, 0, offset, END)
         }
 
-        imageViewProfile.setOnClickListener { findNavController().navigate(R.id.profileFragment) }
+//        imageViewProfile.setOnClickListener { findNavController().navigate(R.id.profileFragment) }
 
         recyclerViewTasks.adapter = taskAdapter
 
@@ -82,6 +83,8 @@ class MarketplaceFragment : Fragment(), FilterListener {
     private fun loadTasks(lat: Double? = null, lon: Double? = null) = taskRepository.tasks(lat, lon, displayTasks())
 
     private fun displayTasks(): (List<Task>) -> Unit = { tasks ->
+        swipeRefreshLayout.isRefreshing = false
+
         taskViewModels = tasks.map {
             TaskViewModel(it.title, it.description, it.due_date.formatDate(), it.estimated_time_in_minutes, getById(it.category))
         }
