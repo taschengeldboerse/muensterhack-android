@@ -6,6 +6,6 @@ data class Task(
         val due_date: String,
         val estimated_time_in_minutes: Int?,
         val status: Int,
-        val assignee: Int?,
-        val category: Int
+        val category: Int,
+        val user: Int?
 )

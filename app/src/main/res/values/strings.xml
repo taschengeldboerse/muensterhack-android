@@ -13,4 +13,13 @@
     <string name="pets">Haustiere</string>
     <string name="technology">Technik</string>
     <string name="misc">Sonstiges</string>
+    <string name="add_task_title">Hilfe anfragen</string>
+    <string name="category">Kategorie</string>
+    <string name="what_to_do">Was soll gemacht werden?</string>
+    <string name="please_insert">Bitte eintragen</string>
+    <string name="more">Weitere Angaben</string>
+    <string name="please_insert_optional">Bitte eintragen (optional)</string>
+    <string name="estimated_duration">Geschätzte Dauer</string>
+    <string name="add_task">Auftrag erstellen</string>
+    <string name="choose_category">Kategorie auswählen</string>
 </resources>

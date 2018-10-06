@@ -53,6 +53,8 @@ class MarketplaceFragment : Fragment(), FilterListener {
 
 //        imageViewProfile.setOnClickListener { findNavController().navigate(R.id.profileFragment) }
 
+        buttonAdd.setOnClickListener { findNavController().navigate(R.id.chooseCategoryFragment) }
+
         recyclerViewTasks.adapter = taskAdapter
 
         if (checkSelfPermission(requireContext(), ACCESS_FINE_LOCATION) == PERMISSION_GRANTED) {
